@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'JRNetwork_Example' do
+  pod 'JRNetwork', :path => '../'
+
+  target 'JRNetwork_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
