@@ -21,11 +21,10 @@ public extension Alamofire.Request {
             
             let newResult = result.flatMap({ (value) -> APIResult<T> in
                 
-                if let object = T.object(value)
-                {
+                if let object = T.object(value) {
                     return .Success(object)
                 } else {
-                    let error = Error.errorWithCode(.JSONSerializationFailed, failureReason: "JSON could not be serialized into response object: \(value)")
+                    let error = NSError(domain: Error.Domain, code: Error.Code.JSONSerializationFailed.rawValue, userInfo: [NSLocalizedFailureReasonErrorKey: "JSON could not be serialized into response object: \(value)"])
                     return .Failure(error, value)
                 }
             })
@@ -49,11 +48,10 @@ public extension Alamofire.Request {
             
             let newResult = result.flatMap({ (value) -> APIResult<[T]> in
                 
-                if let collection = T.collection(value)
-                {
+                if let collection = T.collection(value) {
                     return .Success(collection)
                 } else {
-                    let error = Error.errorWithCode(.JSONSerializationFailed, failureReason: "JSON could not be serialized into response collection: \(value)")
+                    let error = NSError(domain: Error.Domain, code: Error.Code.JSONSerializationFailed.rawValue, userInfo: [NSLocalizedFailureReasonErrorKey: "JSON could not be serialized into response collection: \(value)"])
                     return .Failure(error, value)
                 }
             })

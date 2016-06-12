@@ -18,7 +18,7 @@ public extension Alamofire.Request {
             case let .Success(value):
                 
                 if let JSONToSerialize = keyPath == nil ? value : value.valueForKeyPath(keyPath!) {
-                    completed(.Success(value))
+                    completed(.Success(JSONToSerialize))
                 } else {
                     let error = Error.errorWithCode(.JSONSerializationFailed, failureReason: "JSON in keyPath \(keyPath) not found: \(value)")
                     completed(.Failure(error, value))
