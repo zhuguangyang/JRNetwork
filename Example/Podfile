@@ -9,3 +9,6 @@ target 'JRNetwork_Example' do
     
   end
 end
+
+pod 'Alamofire'
+pod 'ObjectMapper'

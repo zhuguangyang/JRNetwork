@@ -1,0 +1,6 @@
+framework module JRNetwork {
+  umbrella header "JRNetwork-umbrella.h"
+
+  export *
+  module * { export * }
+}

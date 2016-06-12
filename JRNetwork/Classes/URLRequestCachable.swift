@@ -6,4 +6,22 @@
 //
 //
 
-import Foundation
+import Alamofire
+
+protocol URLRequestCachable: URLRequestConvertible {
+    
+    var cache: NSMutableURLRequest {
+        get
+    }
+}
+
+extension URLRequestCachable {
+    
+    var cache: NSMutableURLRequest {
+        let request = URLRequest.mutableCopy() as! NSMutableURLRequest
+        request.cachePolicy = .ReturnCacheDataDontLoad
+        return request
+    }
+}
+
+
