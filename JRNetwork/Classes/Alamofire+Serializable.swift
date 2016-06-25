@@ -15,17 +15,17 @@ public protocol ResponseObjectSerializable {
 
 public extension Alamofire.Request {
     
-    func responseObject<T: ResponseObjectSerializable>(keyPath: String? = nil, completed: APIResult<T> -> Void) {
+    func responseObject<T: ResponseObjectSerializable>(keyPath: String? = nil, completed: Result<T, APIError> -> Void) {
         
         responseJSON(keyPath) { (result) in
             
-            let newResult = result.flatMap({ (value) -> APIResult<T> in
+            let newResult = result.flatMap({ (value) -> Result<T, APIError> in
                 
                 if let object = T.object(value) {
                     return .Success(object)
                 } else {
                     let error = NSError(domain: Error.Domain, code: Error.Code.JSONSerializationFailed.rawValue, userInfo: [NSLocalizedFailureReasonErrorKey: "JSON could not be serialized into response object: \(value)"])
-                    return .Failure(error, value)
+                    return .Failure(APIError(error: error, object: value))
                 }
             })
             completed(newResult)
@@ -42,22 +42,25 @@ public protocol ResponseCollectionSerializable {
 
 public extension Alamofire.Request {
     
-    func responseCollection<T: ResponseCollectionSerializable>(keyPath: String? = nil, completed: APIResult<[T]> -> Void) {
+    func responseCollection<T: ResponseCollectionSerializable>(keyPath: String? = nil, completed: Result<[T], APIError> -> Void) {
         
         responseJSON(keyPath) { (result) in
             
-            let newResult = result.flatMap({ (value) -> APIResult<[T]> in
+            let newResult = result.flatMap({ (value) -> Result<[T], APIError> in
                 
                 if let collection = T.collection(value) {
                     return .Success(collection)
                 } else {
                     let error = NSError(domain: Error.Domain, code: Error.Code.JSONSerializationFailed.rawValue, userInfo: [NSLocalizedFailureReasonErrorKey: "JSON could not be serialized into response collection: \(value)"])
-                    return .Failure(error, value)
+                    return .Failure(APIError(error: error, object: value))
                 }
             })
             completed(newResult)
         }
     }
 }
+
+
+
 
 

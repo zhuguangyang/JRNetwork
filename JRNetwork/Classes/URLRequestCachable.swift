@@ -8,20 +8,25 @@
 
 import Alamofire
 
-protocol URLRequestCachable: URLRequestConvertible {
+public protocol URLRequestCachable: URLRequestConvertible {
     
     var cache: NSMutableURLRequest {
         get
     }
 }
 
-extension URLRequestCachable {
+public extension URLRequestCachable {
     
     var cache: NSMutableURLRequest {
+        
         let request = URLRequest.mutableCopy() as! NSMutableURLRequest
         request.cachePolicy = .ReturnCacheDataDontLoad
         return request
     }
 }
+
+
+
+
 
 

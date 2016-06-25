@@ -21,5 +21,3 @@ extension Int: ResponseObjectSerializable {
         return JSON as? Int
     }
 }
-
-

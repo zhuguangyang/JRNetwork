@@ -10,25 +10,26 @@ import Alamofire
 
 public extension Alamofire.Request {
     
-    func responseJSON(keyPath: String?, completed: APIResult<AnyObject> -> Void) {
+    func responseJSON(keyPath: String?, completed: Result<AnyObject, APIError> -> Void) {
         
         responseJSON { (response) in
-            
+
             switch response.result {
+
             case let .Success(value):
-                
+
                 if let JSONToSerialize = keyPath == nil ? value : value.valueForKeyPath(keyPath!) {
                     completed(.Success(JSONToSerialize))
                 } else {
                     let error = NSError(domain: Error.Domain, code: Error.Code.JSONSerializationFailed.rawValue, userInfo: [NSLocalizedFailureReasonErrorKey: "JSON in keyPath \(keyPath) not found: \(value)"])
-                    completed(.Failure(error, value))
+                    completed(.Failure(APIError(error: error, object: value)))
                 }
                
             case let .Failure(error):
-                completed(.Failure(error, nil))
+                
+                completed(.Failure(APIError(error: error)))
             }
         }
     }
 }
-
 

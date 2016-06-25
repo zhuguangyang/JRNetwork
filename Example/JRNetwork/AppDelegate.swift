@@ -7,6 +7,38 @@
 //
 
 import UIKit
+//import Alamofire
+import JRNetwork
+import PromiseKit
+
+infix operator ^^ { associativity right precedence 155 }
+
+func ^^(lhs: Int, rhs: Int) -> Int {
+    let l = Double(lhs)
+    let r = Double(rhs)
+    let p = pow(l, r)
+    return Int(p)
+}
+
+struct D {
+    
+    private let a: Int
+    
+    init(a: Int) {
+        self.a = a
+    }
+    
+    mutating func next() {
+        self = D(a: a+1)
+    }
+}
+
+struct URL: URLRequestCachable {
+    
+    var URLRequest: NSMutableURLRequest {
+        return NSMutableURLRequest(URL: NSURL(string: "")!)
+    }
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +48,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        var thing1 = "cars"
+        let closure1 = { [thing1] in
+            print("I love \(thing1)")
+        }
+        thing1 = "airplanes"
+        closure1()
+        
+        var thing2 = "cars"
+        let closure2 = {
+            print("I love \(thing2)")
+        }
+        thing2 = "airplanes"
+        closure2() // Prints "I love airplanes"
+        
+                
+        
         return true
     }
 
