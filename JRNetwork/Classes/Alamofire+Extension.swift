@@ -10,26 +10,45 @@ import Alamofire
 
 public extension Alamofire.Request {
     
-    func responseJSON(keyPath: String?, completed: Result<AnyObject, APIError> -> Void) {
+    static func JSONResponseSerializer(options options: NSJSONReadingOptions = .AllowFragments,
+                keyPath: String?) -> ResponseSerializer<AnyObject, APIError> {
         
-        responseJSON { (response) in
-
-            switch response.result {
+        return ResponseSerializer { request, response, data, error in
+            
+            let serializer = JSONResponseSerializer(options: options)
+            
+            let result = serializer.serializeResponse(request, response, data, error)
+            
+            switch result {
 
             case let .Success(value):
 
-                if let JSONToSerialize = keyPath == nil ? value : value.valueForKeyPath(keyPath!) {
-                    completed(.Success(JSONToSerialize))
+                if let JSON = keyPath == nil ? value : value.valueForKeyPath(keyPath!) {
+                    return .Success(JSON)
                 } else {
                     let error = NSError(domain: Error.Domain, code: Error.Code.JSONSerializationFailed.rawValue, userInfo: [NSLocalizedFailureReasonErrorKey: "JSON in keyPath \(keyPath) not found: \(value)"])
-                    completed(.Failure(APIError(error: error, object: value)))
+                    return .Failure(APIError(error: error, object: value))
                 }
-               
+
             case let .Failure(error):
                 
-                completed(.Failure(APIError(error: error)))
+                return .Failure(APIError(error: error))
             }
         }
     }
+    
+    func responseJSON(queue queue: dispatch_queue_t? = nil,
+              options: NSJSONReadingOptions = .AllowFragments,
+              keyPath: String? = nil,
+              completionHandler: Response<AnyObject, APIError> -> Void) -> Self {
+            
+        return response(
+            queue: queue,
+            responseSerializer: Request.JSONResponseSerializer(options: options, keyPath: keyPath),
+            completionHandler: completionHandler
+        )
+    }
 }
+
+
 

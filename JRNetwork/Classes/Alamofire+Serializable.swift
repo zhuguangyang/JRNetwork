@@ -15,9 +15,13 @@ public protocol ResponseObjectSerializable {
 
 public extension Alamofire.Request {
     
-    func responseObject<T: ResponseObjectSerializable>(keyPath: String? = nil, completed: Result<T, APIError> -> Void) {
+    static func ObjectResponseSerializer<T: ResponseObjectSerializable>(keyPath keyPath: String?) -> ResponseSerializer<T, APIError> {
         
-        responseJSON(keyPath) { (result) in
+        return ResponseSerializer { request, response, data, error in
+            
+            let serializer = JSONResponseSerializer(options: .AllowFragments, keyPath: keyPath)
+            
+            let result = serializer.serializeResponse(request, response, data, error)
             
             let newResult = result.flatMap({ (value) -> Result<T, APIError> in
                 
@@ -28,8 +32,21 @@ public extension Alamofire.Request {
                     return .Failure(APIError(error: error, object: value))
                 }
             })
-            completed(newResult)
+            
+            return newResult
         }
+    }
+    
+    func responseObject<T: ResponseObjectSerializable>(queue queue: dispatch_queue_t? = nil,
+                            options: NSJSONReadingOptions = .AllowFragments,
+                            keyPath: String? = nil,
+                            completionHandler: Response<T, APIError> -> Void) -> Self {
+        
+        return response(
+            queue: queue,
+            responseSerializer: Request.ObjectResponseSerializer(keyPath: keyPath),
+            completionHandler: completionHandler
+        )
     }
 }
 
@@ -42,12 +59,16 @@ public protocol ResponseCollectionSerializable {
 
 public extension Alamofire.Request {
     
-    func responseCollection<T: ResponseCollectionSerializable>(keyPath: String? = nil, completed: Result<[T], APIError> -> Void) {
+    static func CollectionResponseSerializer<T: ResponseCollectionSerializable>(keyPath keyPath: String?) -> ResponseSerializer<[T], APIError> {
         
-        responseJSON(keyPath) { (result) in
+        return ResponseSerializer { request, response, data, error in
+            
+            let serializer = JSONResponseSerializer(options: .AllowFragments, keyPath: keyPath)
+            
+            let result = serializer.serializeResponse(request, response, data, error)
             
             let newResult = result.flatMap({ (value) -> Result<[T], APIError> in
-                
+
                 if let collection = T.collection(value) {
                     return .Success(collection)
                 } else {
@@ -55,8 +76,20 @@ public extension Alamofire.Request {
                     return .Failure(APIError(error: error, object: value))
                 }
             })
-            completed(newResult)
+            return newResult
         }
+    }
+    
+    func responseCollection<T: ResponseCollectionSerializable>(queue queue: dispatch_queue_t? = nil,
+                        options: NSJSONReadingOptions = .AllowFragments,
+                        keyPath: String? = nil,
+                        completionHandler: Response<[T], APIError> -> Void) -> Self {
+        
+        return response(
+            queue: queue,
+            responseSerializer: Request.CollectionResponseSerializer(keyPath: keyPath),
+            completionHandler: completionHandler
+        )
     }
 }
 

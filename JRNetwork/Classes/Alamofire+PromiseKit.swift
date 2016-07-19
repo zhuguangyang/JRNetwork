@@ -15,9 +15,9 @@ public extension Alamofire.Request {
         
         return Promise(resolvers: { (fulfill, reject) in
             
-            self.responseJSON(keyPath, completed: { result in
+            responseJSON(keyPath: keyPath, completionHandler: { response in
                 
-                switch result {
+                switch response.result {
                 case let.Success(value):
                     fulfill(value)
                 case let .Failure(error):
@@ -34,9 +34,9 @@ public extension Alamofire.Request {
         
         return Promise(resolvers: { (fulfill, reject) in
             
-            self.responseObject(completed: { (result: Result<T, APIError>) in
+            responseObject(keyPath: keyPath, completionHandler: { (response: Response<T, APIError>) in
                 
-                switch result {
+                switch response.result {
                 case let.Success(value):
                     fulfill(value)
                 case let .Failure(error):
@@ -53,9 +53,9 @@ public extension Alamofire.Request {
         
         return Promise(resolvers: { (fulfill, reject) in
             
-            self.responseCollection(completed: { (result: Result<[T], APIError>) in
+            responseCollection(keyPath: keyPath, completionHandler: { (response: Response<[T], APIError>) in
                 
-                switch result {
+                switch response.result {
                 case let.Success(value):
                     fulfill(value)
                 case let .Failure(error):
