@@ -10,10 +10,10 @@ import Foundation
 
 public struct APIError: ErrorType {
     
-    let error: NSError
-    let object: AnyObject?
+    public let error: NSError
+    public let object: AnyObject?
     
-    init(error: NSError, object: AnyObject? = nil) {
+    public init(error: NSError, object: AnyObject? = nil) {
         
         self.error = error
         self.object = object
