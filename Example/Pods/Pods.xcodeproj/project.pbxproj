@@ -14,8 +14,6 @@
 		1824737D154BE10CBA1BA7A762C06835 /* NSError+Cancellation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A67BD75E7C00CC508AFCC035EE03662 /* NSError+Cancellation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		189D232747DB31BFD13ACB57CC3538C3 /* URLRequestCachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D453A587AC71C80B87B0D015D725CF78 /* URLRequestCachable.swift */; };
 		1B0CD30EDC2C3F9151CAA29E498A9214 /* JRNetwork-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 76DCF77488810E0FD6851DAA04A75F6A /* JRNetwork-dummy.m */; };
-		1BC9C97C1D1C441D00CF6E11 /* Requestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC9C97B1D1C441D00CF6E11 /* Requestable.swift */; };
-		1BC9C97E1D1C48DD00CF6E11 /* AdditiveCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC9C97D1D1C48DD00CF6E11 /* AdditiveCollection.swift */; };
 		1D03446EB95EF33C697D53B0BE9A2832 /* after.m in Sources */ = {isa = PBXBuildFile; fileRef = 35958EA90041AB3BA0DF8E0D64A7625E /* after.m */; };
 		27253D714AD437EC10F337DE2E4AF9BC /* join.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D6AFA3D51E2FD400893700A210F09 /* join.m */; };
 		2D3405986FC586FA6C0A5E0B6BA7E64E /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC44147C8821E7783D03B31C0B7CD5BF /* Validation.swift */; };
@@ -59,7 +57,7 @@
 		C0DB70AB368765DC64BFB5FEA75E0696 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB625A0E4DBDA5DCA858BA8423763647 /* ParameterEncoding.swift */; };
 		C6A48230DD40C7AE3D1CE26057368E52 /* dispatch_promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3347A0D1173BFB1A63DF705487ED6E9A /* dispatch_promise.swift */; };
 		C7B6DD7C0456C50289A2C381DFE9FA3F /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F2A413F7037887519508CCE14422FA /* MultipartFormData.swift */; };
-		C9545ABC5F674173990784F3E8D26F11 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0151976E11DE7EEB6E5CE838097FD1 /* APIError.swift */; };
+		C9545ABC5F674173990784F3E8D26F11 /* BackendError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0151976E11DE7EEB6E5CE838097FD1 /* BackendError.swift */; };
 		CF24769439EF3F5208CB007AB28FAFA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F760C2A9CF7B0376FD60A5D16636F1CB /* Foundation.framework */; };
 		D61788C78EE5286C6CC74697C4FD6FD6 /* PromiseKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FC40389D7B98A12D3581B2CFC570B680 /* PromiseKit-dummy.m */; };
 		DBA689E06ED7C1174C2B082F43018D36 /* AnyPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1964ED7D5CF04CFAEAD8F127F9F379F9 /* AnyPromise.swift */; };
@@ -121,8 +119,6 @@
 		1822919D641BEB29908B85380ABB32A0 /* Manager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Source/Manager.swift; sourceTree = "<group>"; };
 		1964ED7D5CF04CFAEAD8F127F9F379F9 /* AnyPromise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnyPromise.swift; path = Sources/AnyPromise.swift; sourceTree = "<group>"; };
 		1ADCBB22E8F36356A11E1884BA3CC447 /* Alamofire+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Alamofire+Extension.swift"; sourceTree = "<group>"; };
-		1BC9C97B1D1C441D00CF6E11 /* Requestable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requestable.swift; sourceTree = "<group>"; };
-		1BC9C97D1D1C48DD00CF6E11 /* AdditiveCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdditiveCollection.swift; sourceTree = "<group>"; };
 		1EC66166D8362E0A142925879A43DA19 /* Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Promise.swift; path = Sources/Promise.swift; sourceTree = "<group>"; };
 		212F2983C3D9953215D3DC83861CAEF4 /* AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AnyPromise.m; path = Sources/AnyPromise.m; sourceTree = "<group>"; };
 		2287063A7727507A04A9268F9765AEEA /* after.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = after.swift; path = Sources/after.swift; sourceTree = "<group>"; };
@@ -145,7 +141,7 @@
 		4DD27DB5AB64425B97113FA8D5A10F19 /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FAF88F456F3272108893C5EA2C05372 /* JRNetwork-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JRNetwork-prefix.pch"; sourceTree = "<group>"; };
 		59D71130F6FF524394CFEDB9606D0F68 /* Pods-JRNetwork_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JRNetwork_Tests-umbrella.h"; sourceTree = "<group>"; };
-		5E0151976E11DE7EEB6E5CE838097FD1 /* APIError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		5E0151976E11DE7EEB6E5CE838097FD1 /* BackendError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BackendError.swift; sourceTree = "<group>"; };
 		61DEA65506159FA707815FA116150C4D /* AnyPromise.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AnyPromise.h; path = Sources/AnyPromise.h; sourceTree = "<group>"; };
 		68F2A413F7037887519508CCE14422FA /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		6C4DC8AA9C5FE4FD50221DA05096A89E /* URLDataPromise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLDataPromise.swift; path = Sources/URLDataPromise.swift; sourceTree = "<group>"; };
@@ -398,16 +394,14 @@
 			isa = PBXGroup;
 			children = (
 				1ADCBB22E8F36356A11E1884BA3CC447 /* Alamofire+Extension.swift */,
-				6ECFE52D0136DE63CCEFEE9FD974A3A7 /* Alamofire+Promise.swift */,
-				B8CDDA8A14692EC41E1525FA4C09E78E /* Alamofire+PromiseKit.swift */,
 				733F4B8FC3DD3778D5BA4D0E3611C372 /* Alamofire+Serializable.swift */,
-				5E0151976E11DE7EEB6E5CE838097FD1 /* APIError.swift */,
+				B8CDDA8A14692EC41E1525FA4C09E78E /* Alamofire+PromiseKit.swift */,
+				5E0151976E11DE7EEB6E5CE838097FD1 /* BackendError.swift */,
 				7CFF05B285026DB427CED5C2F23354F0 /* Promise.swift */,
+				6ECFE52D0136DE63CCEFEE9FD974A3A7 /* Alamofire+Promise.swift */,
 				E928EB8FC96CFF0744A8583EB9399DE3 /* Result+Extension.swift */,
 				F32FFCE1DE3F5F7D90D35D79677D2C0E /* Serializable+Extension.swift */,
 				D453A587AC71C80B87B0D015D725CF78 /* URLRequestCachable.swift */,
-				1BC9C97B1D1C441D00CF6E11 /* Requestable.swift */,
-				1BC9C97D1D1C48DD00CF6E11 /* AdditiveCollection.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -706,7 +700,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BC9C97C1D1C441D00CF6E11 /* Requestable.swift in Sources */,
 				ADF19C953CE2A7D0B72EC93A81FCCC26 /* Alamofire-dummy.m in Sources */,
 				8EB11202167FCDDF1257AAAB1D1FB244 /* Alamofire.swift in Sources */,
 				5CB05FBCB32D21E194B5ECF680CB6AE0 /* Download.swift in Sources */,
@@ -715,7 +708,6 @@
 				C7B6DD7C0456C50289A2C381DFE9FA3F /* MultipartFormData.swift in Sources */,
 				34CCDCA848A701466256BC2927DA8856 /* NetworkReachabilityManager.swift in Sources */,
 				BE41196F6A3903E59C3306FE3F8B43FE /* Notifications.swift in Sources */,
-				1BC9C97E1D1C48DD00CF6E11 /* AdditiveCollection.swift in Sources */,
 				C0DB70AB368765DC64BFB5FEA75E0696 /* ParameterEncoding.swift in Sources */,
 				EFE92E8D3813DD26E78E93EEAF6D7E7E /* Request.swift in Sources */,
 				62E8346F03C03E7F4D631361F325689E /* Response.swift in Sources */,
@@ -737,7 +729,7 @@
 				6680D84798D2AC178F9AFC2FCAEDA684 /* Alamofire+Promise.swift in Sources */,
 				4BE1844151B66BFDE7AE88965D2784B4 /* Alamofire+PromiseKit.swift in Sources */,
 				B437958A5F68B4639EE40DCA071D1EF8 /* Alamofire+Serializable.swift in Sources */,
-				C9545ABC5F674173990784F3E8D26F11 /* APIError.swift in Sources */,
+				C9545ABC5F674173990784F3E8D26F11 /* BackendError.swift in Sources */,
 				1B0CD30EDC2C3F9151CAA29E498A9214 /* JRNetwork-dummy.m in Sources */,
 				70183EB6B2CE18A984820D3115E4AACC /* Promise.swift in Sources */,
 				1517D289A3F97A6D7AB5CA9629701CFF /* Result+Extension.swift in Sources */,

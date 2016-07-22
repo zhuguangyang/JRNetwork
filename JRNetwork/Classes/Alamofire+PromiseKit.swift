@@ -9,24 +9,6 @@
 import Alamofire
 import PromiseKit
 
-public extension Alamofire.Request {
-    
-    func promiseJSON(keyPath: String? = nil) -> Promise<AnyObject> {
-        
-        return Promise(resolvers: { (fulfill, reject) in
-            
-            responseJSON(keyPath: keyPath, completionHandler: { response in
-                
-                switch response.result {
-                case let.Success(value):
-                    fulfill(value)
-                case let .Failure(error):
-                    reject(error)
-                }
-            })
-        })
-    }
-}
 
 public extension Alamofire.Request {
     
@@ -34,7 +16,7 @@ public extension Alamofire.Request {
         
         return Promise(resolvers: { (fulfill, reject) in
             
-            responseObject(keyPath: keyPath, completionHandler: { (response: Response<T, APIError>) in
+            responseObject(keyPath: keyPath, completionHandler: { (response: Response<T, BackendError>) in
                 
                 switch response.result {
                 case let.Success(value):
@@ -53,7 +35,7 @@ public extension Alamofire.Request {
         
         return Promise(resolvers: { (fulfill, reject) in
             
-            responseCollection(keyPath: keyPath, completionHandler: { (response: Response<[T], APIError>) in
+            responseCollection(keyPath: keyPath, completionHandler: { (response: Response<[T], BackendError>) in
                 
                 switch response.result {
                 case let.Success(value):

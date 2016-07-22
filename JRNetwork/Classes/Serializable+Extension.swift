@@ -10,14 +10,14 @@ import Foundation
 
 extension String: ResponseObjectSerializable {
     
-    public static func object(JSON: AnyObject) -> String? {
-        return JSON as? String
+    public static func object(response response: NSHTTPURLResponse, representation: AnyObject) -> String? {
+        return representation as? String
     }
 }
 
 extension Int: ResponseObjectSerializable {
     
-    public static func object(JSON: AnyObject) -> Int? {
-        return JSON as? Int
+    public static func object(response response: NSHTTPURLResponse, representation: AnyObject) -> Int? {
+        return representation as? Int
     }
 }
