@@ -41,7 +41,7 @@ extension Alamofire.Request {
                 
             case let .Failure(error):
                 
-                return .Failure(.JSONSerialization(error: result.error!))
+                return .Failure(.JSONSerialization(error: error))
 
             }
         }
