@@ -2,14 +2,12 @@ use_frameworks!
 
 target 'JRNetwork_Example' do
   pod 'JRNetwork', :path => '../'
-  pod 'Alamofire'
-  #pod 'ObjectMapper'
-  pod 'PromiseKit/CorePromise'
+  pod 'Alamofire', '3.5.0'
+#  pod 'ObjectMapper'
+#  pod 'PromiseKit/CorePromise'
 
   target 'JRNetwork_Tests' do
     inherit! :search_paths
-
-    
   end
 end
 

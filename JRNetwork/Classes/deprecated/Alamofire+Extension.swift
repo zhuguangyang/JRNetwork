@@ -6,8 +6,8 @@
 //
 //
 
-import Alamofire
-
+//import Alamofire
+//
 //public extension Alamofire.Request {
 //    
 //    static func JSONResponseSerializer(options options: NSJSONReadingOptions = .AllowFragments) -> ResponseSerializer<AnyObject, BackendError> {

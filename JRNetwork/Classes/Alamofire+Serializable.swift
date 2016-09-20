@@ -8,14 +8,9 @@
 
 import Alamofire
 
-public protocol ResponseObjectSerializable {
-    @warn_unused_result
-    static func object(response response: NSHTTPURLResponse, representation: AnyObject) -> Self?
-}
-
-public extension Alamofire.Request {
+extension Alamofire.Request {
     
-    static func ObjectResponseSerializer<T: ResponseObjectSerializable>(keyPath keyPath: String?) -> ResponseSerializer<T, BackendError> {
+    func objectResponseSerializer<T: ResponseObjectSerializable>(keyPath keyPath: String?) -> ResponseSerializer<T, BackendError> {
         
         return ResponseSerializer { request, response, data, error in
             
@@ -23,9 +18,10 @@ public extension Alamofire.Request {
                 return .Failure(.Network(error: error!))
             }
 
-            let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
-            let result = JSONResponseSerializer.serializeResponse(request, response, data, error)
+            let jsonResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
+            let result = jsonResponseSerializer.serializeResponse(request, response, data, nil)
             
+
             switch result {
                 
             case let .Success(value):
@@ -36,7 +32,7 @@ public extension Alamofire.Request {
                 }
                 
                 guard let response = response,
-                    let responseObject = T.object(response: response, representation: JSON) else {
+                    let responseObject = T(response: response, representation: JSON) else {
                     
                         return .Failure(.ObjectSerialization(reason: "JSON for keyPath(\(keyPath == nil ? "" : keyPath!)) could not be serialized into response object: \(value)", object: value))
                 }
@@ -45,33 +41,27 @@ public extension Alamofire.Request {
                 
             case let .Failure(error):
                 
-                return .Failure(.JSONSerialization(error: error))
+                return .Failure(.JSONSerialization(error: result.error!))
+
             }
         }
     }
     
-    func responseObject<T: ResponseObjectSerializable>(queue queue: dispatch_queue_t? = nil,
+    public func responseObject<T: ResponseObjectSerializable>(queue queue: dispatch_queue_t? = nil,
                             keyPath: String? = nil,
                             completionHandler: Response<T, BackendError> -> Void) -> Self {
         
         return response(
             queue: queue,
-            responseSerializer: Request.ObjectResponseSerializer(keyPath: keyPath),
+            responseSerializer: objectResponseSerializer(keyPath: keyPath),
             completionHandler: completionHandler
         )
     }
 }
 
-
-public protocol ResponseCollectionSerializable {
-    @warn_unused_result
-    static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Self]?
-}
-
-
-public extension Alamofire.Request {
+extension Alamofire.Request {
     
-    static func CollectionResponseSerializer<T: ResponseCollectionSerializable>(keyPath keyPath: String?) -> ResponseSerializer<[T], BackendError> {
+    func collectionResponseSerializer<T: ResponseCollectionSerializable>(keyPath keyPath: String?) -> ResponseSerializer<[T], BackendError> {
         
         return ResponseSerializer { request, response, data, error in
             
@@ -93,7 +83,7 @@ public extension Alamofire.Request {
                 }
                 
                 guard let response = response,
-                    let responseObject = T.collection(response: response, representation: JSON) else {
+                    let responseObject = T.collection(from: response, withRepresentation: JSON) else {
                         
                         return .Failure(.ObjectSerialization(reason: "JSON for keyPath(\(keyPath == nil ? "" : keyPath!)) could not be serialized into response object: \(value)", object: value))
                 }
@@ -107,20 +97,18 @@ public extension Alamofire.Request {
         }
     }
     
-    func responseCollection<T: ResponseCollectionSerializable>(queue queue: dispatch_queue_t? = nil,
+    public func responseCollection<T: ResponseCollectionSerializable>(queue queue: dispatch_queue_t? = nil,
                         options: NSJSONReadingOptions = .AllowFragments,
                         keyPath: String? = nil,
                         completionHandler: Response<[T], BackendError> -> Void) -> Self {
         
         return response(
             queue: queue,
-            responseSerializer: Request.CollectionResponseSerializer(keyPath: keyPath),
+            responseSerializer: collectionResponseSerializer(keyPath: keyPath),
             completionHandler: completionHandler
         )
     }
 }
-
-
 
 
 

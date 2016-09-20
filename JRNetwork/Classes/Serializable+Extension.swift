@@ -2,22 +2,33 @@
 //  Serializable+Extension.swift
 //  Pods
 //
-//  Created by 王小涛 on 16/6/12.
+//  Created by 王小涛 on 16/9/19.
 //
 //
 
 import Foundation
 
-extension String: ResponseObjectSerializable {
+extension Int: ResponseObjectSerializable {
     
-    public static func object(response response: NSHTTPURLResponse, representation: AnyObject) -> String? {
-        return representation as? String
+    public init?(response: NSHTTPURLResponse, representation: AnyObject) {
+        
+        guard let int = representation as? Int else {return nil}
+        self = int
     }
 }
 
-extension Int: ResponseObjectSerializable {
-    
-    public static func object(response response: NSHTTPURLResponse, representation: AnyObject) -> Int? {
-        return representation as? Int
+extension Int: ResponseCollectionSerializable {}
+
+
+extension String: ResponseObjectSerializable {
+
+    public init?(response: NSHTTPURLResponse, representation: AnyObject) {
+        
+        guard let string = representation as? String else {return nil}
+        self = string
     }
 }
+
+extension String: ResponseCollectionSerializable {}
+
+

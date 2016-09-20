@@ -9,7 +9,6 @@
 import UIKit
 //import Alamofire
 import JRNetwork
-import PromiseKit
 
 infix operator ^^ { associativity right precedence 155 }
 
