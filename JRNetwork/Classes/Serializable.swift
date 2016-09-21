@@ -14,20 +14,21 @@ public protocol ResponseCollectionSerializable {
     static func collection(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) -> [Self]?
 }
 
-public extension ResponseCollectionSerializable where Self: ResponseObjectSerializable {
-    
-    static func collection(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) -> [Self]? {
-    
-        guard let representation = representation as? [AnyObject] else {
-            return nil
-        }
-        
-        typealias T = Self
-        
-        return representation.flatMap { item -> T? in
-            return T(from: response, withRepresentation: item)
-        }
-    }
-}
+// 不能做以下这个假设
+//public extension ResponseCollectionSerializable where Self: ResponseObjectSerializable {
+//    
+//    static func collection(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) -> [Self]? {
+//    
+//        guard let representation = representation as? [AnyObject] else {
+//            return nil
+//        }
+//        
+//        typealias T = Self
+//        
+//        return representation.flatMap { item -> T? in
+//            return T(from: response, withRepresentation: item)
+//        }
+//    }
+//}
 
 
