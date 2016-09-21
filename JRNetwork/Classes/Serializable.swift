@@ -7,7 +7,7 @@
 //
 
 public protocol ResponseObjectSerializable {
-    init?(response: NSHTTPURLResponse, representation: AnyObject)
+    static func object(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) -> Self?
 }
 
 public protocol ResponseCollectionSerializable {
@@ -25,7 +25,7 @@ public extension ResponseCollectionSerializable where Self: ResponseObjectSerial
         typealias T = Self
         
         return representation.flatMap { item -> T? in
-            return T(response: response, representation: item)
+            return T.object(from: response, withRepresentation: item)
         }
     }
 }

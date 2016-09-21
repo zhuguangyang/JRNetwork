@@ -10,10 +10,9 @@ import Foundation
 
 extension Int: ResponseObjectSerializable {
     
-    public init?(response: NSHTTPURLResponse, representation: AnyObject) {
-        
-        guard let int = representation as? Int else {return nil}
-        self = int
+    public static func object(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) -> Int? {
+    
+        return representation as? Int
     }
 }
 
@@ -22,10 +21,9 @@ extension Int: ResponseCollectionSerializable {}
 
 extension String: ResponseObjectSerializable {
 
-    public init?(response: NSHTTPURLResponse, representation: AnyObject) {
+    public static func object(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) -> String? {
         
-        guard let string = representation as? String else {return nil}
-        self = string
+        return representation as? String
     }
 }
 

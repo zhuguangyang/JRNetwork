@@ -32,7 +32,7 @@ extension Alamofire.Request {
                 }
                 
                 guard let response = response,
-                    let responseObject = T(response: response, representation: JSON) else {
+                    let responseObject = T.object(from: response, withRepresentation: JSON) else {
                     
                         return .Failure(.ObjectSerialization(reason: "JSON for keyPath(\(keyPath == nil ? "" : keyPath!)) could not be serialized into response object: \(value)", object: value))
                 }
