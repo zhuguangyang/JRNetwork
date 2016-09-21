@@ -35,9 +35,6 @@ extension String: ResponseObjectSerializable {
     }
 }
 
-
-
-
 extension String: ResponseCollectionSerializable {}
 
 
