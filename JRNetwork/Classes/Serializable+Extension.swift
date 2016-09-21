@@ -10,9 +10,13 @@ import Foundation
 
 extension Int: ResponseObjectSerializable {
     
-    public static func object(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) -> Int? {
-    
-        return representation as? Int
+    public init?(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) {
+        
+        if let object = representation as? Int {
+            self = object
+        }else {
+            return nil
+        }
     }
 }
 
@@ -21,11 +25,18 @@ extension Int: ResponseCollectionSerializable {}
 
 extension String: ResponseObjectSerializable {
 
-    public static func object(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) -> String? {
+    public init?(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) {
         
-        return representation as? String
+        if let object = representation as? String {
+            self = object
+        }else {
+            return nil
+        }
     }
 }
+
+
+
 
 extension String: ResponseCollectionSerializable {}
 
