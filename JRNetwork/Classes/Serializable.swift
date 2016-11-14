@@ -7,7 +7,7 @@
 //
 
 public protocol ResponseObjectSerializable {
-    init?(json: Any)
+    init?(json: AnyObject)
 }
 
 

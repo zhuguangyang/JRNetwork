@@ -25,8 +25,8 @@ extension Alamofire.Request {
                 return .Failure(.JSONSerialization(error: result.error!))
             }
             
-            var jsonCandidate: Any? {
-                var json: Any?
+            var jsonCandidate: AnyObject? {
+                var json: AnyObject?
                 if let keyPath = keyPath where !keyPath.isEmpty {
                     json = value.valueForKeyPath(keyPath)
                 } else {
@@ -79,8 +79,8 @@ extension Alamofire.Request {
                 return .Failure(.JSONSerialization(error: result.error!))
             }
             
-            var jsonCandidate: Any? {
-                var json: Any?
+            var jsonCandidate: AnyObject? {
+                var json: AnyObject?
                 if let keyPath = keyPath where !keyPath.isEmpty {
                     json = value.valueForKeyPath(keyPath)
                 } else {
@@ -90,11 +90,11 @@ extension Alamofire.Request {
             }
             
             
-            guard let json = jsonCandidate as? [Any] else {
+            guard let json = jsonCandidate as? [AnyObject] else {
                 return .Failure(.ObjectSerialization(reason: "jsonCandidate is not a [Any] value", object: value))
             }
             
-            func array<T: ResponseObjectSerializable>(json: [Any]) -> [T] {
+            func array<T: ResponseObjectSerializable>(json: [AnyObject]) -> [T] {
                 return json.reduce([], combine: { (container, rawValue) in
                     if let value = T(json: rawValue) {
                         return container + [value]

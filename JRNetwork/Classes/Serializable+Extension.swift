@@ -11,7 +11,7 @@ import Foundation
 
 extension Int: ResponseObjectSerializable {
     
-    public init?(json: Any) {
+    public init?(json: AnyObject) {
         
         if let value = json as? NSNumber {
             self = value.integerValue
@@ -26,7 +26,7 @@ extension Int: ResponseObjectSerializable {
 
 extension Double: ResponseObjectSerializable {
     
-    public init?(json: Any) {
+    public init?(json: AnyObject) {
         
         if let value = json as? NSNumber {
             self = value.doubleValue
@@ -41,7 +41,7 @@ extension Double: ResponseObjectSerializable {
 
 extension String: ResponseObjectSerializable {
     
-    public init?(json: Any) {
+    public init?(json: AnyObject) {
         
         if let object = json as? String {
             self = object
