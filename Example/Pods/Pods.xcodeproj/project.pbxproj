@@ -31,7 +31,6 @@
 		91C09AC2A52ED69A27C8D923139A006F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41EA265E42E2F53F87DD98BDA6BDEFD5 /* Foundation.framework */; };
 		9469DF81ECB494E84675969B5E13374C /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AE6827D6CBD3F8B59B79641ABF6ED159 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		99DB6FFE19017CD32FC9441E22C0B589 /* Pods-JRNetwork_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A789B3F43B14F06D48AB921929ED621A /* Pods-JRNetwork_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A5C122E5206EF52EDEA31E2598AB245B /* URLRequestCachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AE259AF940D12505459D7211DEDFF0 /* URLRequestCachable.swift */; };
 		AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E393CF47FE31F265B29AA2D9B67C656 /* Result.swift */; };
 		ADA63EF81836173ADDA53791CA52880D /* Serializable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40301AC3893BFCDAF4884685661D2B42 /* Serializable+Extension.swift */; };
 		ADF19C953CE2A7D0B72EC93A81FCCC26 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD74E0A1B7122513F9BCD2B66B65219 /* Alamofire-dummy.m */; };
@@ -116,7 +115,6 @@
 		9FD74E0A1B7122513F9BCD2B66B65219 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		A149BF2819128352A98494A4402603EE /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
 		A2706FB66DA1E5FBE091B11FFB9EEFE6 /* JRNetwork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JRNetwork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A3AE259AF940D12505459D7211DEDFF0 /* URLRequestCachable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = URLRequestCachable.swift; sourceTree = "<group>"; };
 		A789B3F43B14F06D48AB921929ED621A /* Pods-JRNetwork_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JRNetwork_Example-umbrella.h"; sourceTree = "<group>"; };
 		A8488ACA7E1EAE157739F918A5140CEE /* Pods-JRNetwork_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JRNetwork_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		AB714D2EF499EE0EF3E1957151533A5D /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 				EDEA95E2531E8C7C3C7C086C3472914F /* Result+Extension.swift */,
 				722D47884BD89DA9FAB866A99209DC8D /* Serializable.swift */,
 				40301AC3893BFCDAF4884685661D2B42 /* Serializable+Extension.swift */,
-				A3AE259AF940D12505459D7211DEDFF0 /* URLRequestCachable.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -513,7 +510,6 @@
 				3CC2D01466878F2A99889BC06736316B /* Result+Extension.swift in Sources */,
 				ADA63EF81836173ADDA53791CA52880D /* Serializable+Extension.swift in Sources */,
 				6BDC77D34B501CB8F92C3424EEE31795 /* Serializable.swift in Sources */,
-				A5C122E5206EF52EDEA31E2598AB245B /* URLRequestCachable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,26 +8,42 @@
 
 import Foundation
 
+
 extension Int: ResponseObjectSerializable {
     
-    public init?(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) {
+    public init?(json: Any) {
         
-        if let object = representation as? Int {
-            self = object
+        if let value = json as? NSNumber {
+            self = value.integerValue
+        }else if let object = json as? String, let value = Int(object) {
+            self = value
         }else {
             return nil
         }
     }
 }
 
-extension Int: ResponseCollectionSerializable {}
+
+extension Double: ResponseObjectSerializable {
+    
+    public init?(json: Any) {
+        
+        if let value = json as? NSNumber {
+            self = value.doubleValue
+        }else if let object = json as? String, let value = Double(object) {
+            self = value
+        }else {
+            return nil
+        }
+    }
+}
 
 
 extension String: ResponseObjectSerializable {
-
-    public init?(from response: NSHTTPURLResponse, withRepresentation representation: AnyObject) {
+    
+    public init?(json: Any) {
         
-        if let object = representation as? String {
+        if let object = json as? String {
             self = object
         }else {
             return nil
@@ -35,6 +51,5 @@ extension String: ResponseObjectSerializable {
     }
 }
 
-extension String: ResponseCollectionSerializable {}
 
 

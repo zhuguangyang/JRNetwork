@@ -32,12 +32,12 @@ struct D {
     }
 }
 
-struct URL: URLRequestCachable {
-    
-    var URLRequest: NSMutableURLRequest {
-        return NSMutableURLRequest(URL: NSURL(string: "")!)
-    }
-}
+//struct URL: URLRequestCachable {
+//    
+//    var URLRequest: NSMutableURLRequest {
+//        return NSMutableURLRequest(URL: NSURL(string: "")!)
+//    }
+//}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -62,8 +62,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         thing2 = "airplanes"
         closure2() // Prints "I love airplanes"
         
-                
+        let url = NSURL(string: "http://www.baidu.com/user.json?k=car")
         
+        var baseURL: String {
+            
+            var urlString: String = ""
+            if let scheme = url?.scheme {
+                urlString += scheme + "://"
+            }
+            if let host = url?.host {
+                urlString += host
+            }
+            return urlString
+        }
+        
+        print("base url: \(baseURL)")
+        print("related path: \(url?.path)")
         return true
     }
 

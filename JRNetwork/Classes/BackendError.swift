@@ -8,18 +8,6 @@
 
 import Foundation
 
-//public protocol NSURLRequestConvertible {
-//    var reqeust: NSURLRequest {get}
-//}
-//
-//public protocol Network {
-//    
-//    init(url: NSURLRequestConvertible)
-//    
-//    func responseObject<T: ResponseObjectSerializable>(completed: Result<T, BackendError> -> Void)
-//    func responseCollection<T: ResponseCollectionSerializable>(completed: Result<T, BackendError> -> Void)
-//}
-
 public enum BackendError: ErrorType {
     case Network(error: NSError)
     case DataSerialization(reason: String)
